@@ -1,0 +1,11 @@
+dialect  "mvel"
+
+import com.drandarov.minimaldrools.Customer;
+
+rule "newCustomer_discount"
+    when
+        k: Customer( countOrders == 0, privateCustomer == true, discountRate < 5 )
+    then
+        modify( k ) { discountRate = 5 }
+        System.out.println("Customer.discountRate set to 5");
+end
